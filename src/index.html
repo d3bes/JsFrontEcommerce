@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css/stayle.css">
+    <link rel="stylesheet" href="style.css/all.min.css">
+</head>
+
+<body onload="get_data()">
+    <div id="container" style="position: fixed; width: 100%; height: 100%; background-color:white; color:#0aad0a; z-index: 1; display: flex; justify-content:center; align-items: center;">
+        <i class="fa-solid fa-spinner fa-spin" style="font-size:3rem; "></i>
+    </div>
+
+
+    <!-- <section id="spinner_section">
+        <div class="spineer">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+        </div>
+    </section> -->
+
+    <nav>
+        <div class="navbar" id="navbar">
+
+            <ul id="ul-nav">
+
+                <div class="logo">
+                    <a href="">
+                        <li><i class="fa-solid fa-cart-shopping"></i>
+                        <li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <h2>FreshCart</h2>
+                        </li>
+                    </a>
+                </div>
+
+
+                <div id="contantlogo">
+
+                   <li id="homes" onclick="get_data()">Home</li>  
+
+                   
+                      
+                  
+                   
+                     <li onclick="get_brand()">Brands</li>
+                 
+                    
+                    <li onclick="get_catogry()">Categories</li>
+                 
+                </div>
+                <div class="iconlogo">
+                <a href="cart.html" class="shoping_icon" target="_self" ><li>    
+             <span id="count" style=" width:10px;height:10px; color:#0aad0a; ; font-size: 0.6em; "></span>
+                <i class="fa-solid fa-cart-shopping"></i></li></a>
+                    <a href="">
+                        <li><i class="fa-brands fa-facebook"></i></li>
+                    </a>
+                    <a href="">
+                        <li><i class="fa-brands fa-instagram"></i></li>
+                    </a>
+                    <a href="">
+                        <a style="color: white;" onclick="logout()" href="login.html">Logout</a>
+                    </a>
+
+                </div>
+            </ul>
+        </div>
+
+    </nav>
+
+
+    <header id="hom">
+
+        <div class="laya-3"></div>
+
+
+
+        <div class="intro-t ">
+
+            <h1>FRESH CART</h1>
+            <h2></h2>
+            
+
+        </div>
+
+    </header>
+
+   
+    <div class="input_search">
+        
+
+        <input type="text" id="input_search" onfocus="displayshow()" value="" placeholder="Search Product.....">
+        <i class="fa-solid fa-magnifying-glass" for="input_search" ></i>
+    </div>
+   
+    <ul id="search_results" style="padding-left: 30px;"></ul>
+    <section id="home">
+        <!-- ============first_section================= -->
+      
+        <section id="continer_section">
+       
+           
+       
+                <section class="first_section">
+    
+                    <div class="slid_section" id="first_section">
+    
+                        <div class="imges_first">
+                            <img src="" alt="">
+                        </div>
+    
+    
+                    </div>
+    
+    
+                </section>
+
+            <!-- ============second_section================= -->
+      
+            <section class="second_sction" id="first_sction_home">
+
+
+
+            </section>
+
+        </section>
+    
+
+        <section class="second_sction" id="first_sction_home">
+
+
+
+        </section>
+
+
+
+
+
+           <!-- ============brand_section================= -->
+
+        <section class="section_barnd" id="section_barnd">
+
+        
+
+
+            
+
+        </section>
+
+
+<!-- ===========================section_categories======================================
+ -->
+
+
+        <section class="section_categories">
+
+            
+        
+         </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ===========footr_section================= -->
+
+
+
+
+        <footer class="footer">
+            <h4>Footer</h4>
+        </footer>
+
+
+           
+
+
+
+
+
+
+
+        <script src="js/indxe.js"></script>
+</body>
+
+</html>

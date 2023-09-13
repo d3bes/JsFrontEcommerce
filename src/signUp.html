@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signUp page</title>
+    <link rel="stylesheet" href="cssLogin/bootstrap.min.css">
+    <link rel="stylesheet" href="cssLogin/style.css">
+
+    <script src="jsLogin/jquery-3.5.1.min.js" defer></script>
+    <script src="jsLogin/popper.min.js" defer></script>
+    <script src="jsLogin/script.js" defer></script>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="w-75 p-5 m-auto text-center form-container ">
+            <h2 class="text-info mb-4">Smart Login System</h2>
+            <div class="mb-3 ">
+
+                <input type="text" class="form-control bg-transparent text-white" id="usernameInput" placeholder="Enter your name">
+                <p id="usernameAlert" class="d-none text-danger">include at least 3 letters starting with capital, second name is optional</p>
+            </div>
+            <div class="mb-3 ">
+
+                <input type="email" class="form-control bg-transparent text-white" id="userEmailInput" placeholder="Enter your email">
+                <p id="userEmailAlert" class="d-none text-danger">name@example.com</p>
+
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control bg-transparent text-white mb-3" id="userPasswordInput" placeholder="Enter your password">
+                <p id="userPasswordAlert" class="d-none text-danger m-0">you must strenth your password, from 5 to 15 characters</p>
+
+            </div>
+            <p class="text-success d-none" id="confirmMsg">Success</p>
+            <p class="text-danger d-none mb-0" id="accountExistMsg">this account is exist ! Try another one.</p>
+            <p class="text-danger d-none mb-0" id="tryAgainMsg">signUp failed ! Try again</p>
+            <a id="signupBtn" onclick="signUp()" class="btn btn-outline-info w-100 mb-3 mt-4 text-decoration-none">Sign Up</a>
+            <p class="text-white d-block">you have an accoount? <a href="login.html" class="text-white text-decoration-none">Sign In</a></p>
+            <a href="login.html" class="d-none btn btn-outline-success text-white w-25 m-auto" id="signin">signin</a>
+        </div>
+    </div>
+</body>
+</html>

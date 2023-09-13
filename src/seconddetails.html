@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css/stayle.css">
+    <link rel="stylesheet" href="style.css/all.min.css">
+    <style>
+        #div-colors {
+            display: flex;
+            justify-self: start;
+        }
+
+        .buble-colors {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+            border-radius: 15px;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .div-btn {
+            margin-top: 100px;
+
+        }
+
+        .btn {
+            width: 300px;
+            height: 60px;
+            border: none;
+            background-color: black;
+            color: white;
+            transition: 0.8s;
+            cursor:pointer;
+
+        }
+
+        .btn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            transform: translateY(-0.25em);
+            cursor: pointer;
+            background-color: rgba(69, 68, 68, 0.9);
+            border: none;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: end;
+        }
+
+        .iconlogo a li:hover {
+            color: #868786;
+        }
+
+        .div_detalis {
+            display: flex;
+            justify-content: flex-start;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section>
+        <div id="container"
+            style="position: fixed; width: 100%; height: 100%; background-color:white; color:#0aad0a; z-index: 1; display: flex; justify-content:center; align-items: center;">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size:3rem; "></i>
+        </div>
+        <header>
+            <div class="iconlogo">
+                <a href="cart.html" class="shoping_icon" target="_self">
+                    <span id="count"
+                        style="padding-right: 25px; padding-top: 0px; width:10px;height:10px; color:#bf6969; ; font-size: 0.8em; "></span>
+                    <li style="padding-top: 25px;">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </li>
+                </a>
+            </div>
+        </header>
+        <div id="section_detalis"></div>
+    </section>
+    <script>
+        window.onload = function Details() {
+
+            var queryParams = location.search;
+            var url = new URLSearchParams(queryParams);
+            var id = url.get("id")
+
+            fetch(`http://makeup-api.herokuapp.com/api/v1/products.json?price_greater_than=0&limit=100`)
+                .then(res => res.json())
+                .then(data => {
+                    //Filter products with a price value and working image link
+                    const filteredData = data.slice(0, 100).map(item => {
+                        if (item.price === null || item.price === undefined) {
+                            item.price = 65; //set price to 65 if it is null or undefined
+                        }
+                        return item;
+                    });
+                    document.getElementById("container").style.display = "none";
+                    console.log(filteredData);
+                    numProduct()
+                    displayDetails(data, id)
+                })
+        }
+        function displayDetails(detailsData, id) {
+            var box, length;
+            var innerBox = '';
+            detailsData.forEach(element => {
+
+                if (element.id == id) {
+                    innerBox = '';
+                    if (element.product_colors.length > 22) length = 22;
+                    else length = element.product_colors.length
+                    for (var i = 0; i < length; i++) {
+                        innerBox += `<div class="buble-colors" style="background-color: ${element.product_colors[i].hex_value};"></div>`
+                    }
+                    box = `
+                            <div class="div_detalis" id="${element.id}">
+                                <div class="imge_detal" style="border: 2px solid black; display: flex; justify-content:center;">
+                                    <img src="${element.image_link}" alt="" style="text-align:center">
+                                </div>
+                                <div class="count_detalis" style="margin-top:95px; display:inline-block">
+                                <div style="background-color: palevioletred;height: 35px; width: 10px;display: inline-block;"></div>
+                                <h1 class="womensTcard" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-seri; letter-spacing: 2px; display:inline-block">${element.name}</h1>
+                                <span class = "brand" style="font-family: 'Advent Pro';font-size: 17px; display: block;">Brand : ${element.brand}</span>
+                                <p><h3>Description:</h3>${element.description} </p>
+                                <h4>Currency: ${element.currency}</h4>
+                                <h4 class="price" style="font-size:x-large; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> ${element.price} $</h4>
+                                <div class="colors">
+                                    <h4>colors</h4>
+                                    <div id="div-colors"></div>
+                                </div>
+                                <span>"updated_at": ${element.updated_at}</span>
+                                <div class="div-btn">
+                                    <button class="btn" id="addcard" onclick="GetSelectItem(this)">
+                                        <h3> ADD TO CART<h3>
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                        `
+                }
+            });
+            document.getElementById("section_detalis").innerHTML = box;
+            document.getElementById("div-colors").innerHTML = innerBox;
+        }
+
+        //num of product in cart when reload
+        function numProduct() {
+            var cart = JSON.parse(localStorage.getItem('cart'));
+            c = cart.length
+            var counter = document.getElementById("count")
+            counter.textContent = c
+        }
+        setInterval(numProduct(), 1000)
+        // increment when click add to cart 
+        var count = document.getElementById("addcard")
+        var c;
+
+        function counterIncrement() {
+            c++;
+            var counter = document.getElementById("count")
+            counter.textContent = c
+
+        }
+        var final = c
+
+        // get select item data 
+        var Cart = [];    // Cart product 
+        function GetSelectItem(button) {
+            var item = button.closest('.div_detalis');
+            var itemId = item.id
+            var itemBrand = item.querySelector('.brand').textContent;
+            var itemName = item.querySelector('.womensTcard').textContent;
+            var itemPrice = item.querySelector('.price').textContent;
+            var itemImage = item.querySelector('img').src;
+
+            // push the item data into the Cart array
+            var itemsCart = JSON.parse(localStorage.getItem('cart'))
+            console.log("length "+itemsCart.length)
+            if (itemsCart.length >= 0) {
+                itemsCart.forEach(element => {
+                    Cart.push({
+                        id: element.id,
+                        name: element.name,
+                        price: element.price,
+                        imageLink: element.imageLink,
+                        brand: element.brand
+                    });
+                })
+            }
+            Cart.push({
+                id: itemId,
+                name: itemName,
+                price: itemPrice,
+                imageLink: itemImage,
+                brand: itemBrand
+            });
+
+            counterIncrement(); // increment when click add to cart 
+            console.log(itemId)
+            console.log(itemName)
+            console.log(itemPrice)
+            for (var i = 0; i < Cart.length; i++)
+                console.log(Cart[i].id)
+            localStorage.setItem('cart', JSON.stringify(Cart));
+            Cart = [];
+        }
+    </script>
+
+</body>
+
+</html>

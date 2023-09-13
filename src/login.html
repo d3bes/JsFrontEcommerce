@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin page</title>
+    <link rel="stylesheet" href="cssLogin/bootstrap.min.css">
+    <link rel="stylesheet" href="cssLogin/style.css">
+
+    <script src="jsLogin/jquery-3.5.1.min.js" defer></script>
+    <script src="jsLogin/popper.min.js" defer></script>
+    <script src="jsLogin/script.js" defer></script>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="w-75 p-5 m-auto text-center form-container ">
+            <h2 class="text-info mb-4">Smart Login System</h2>
+
+            <div class="mb-3 ">
+
+                <input type="text" class="form-control bg-transparent text-white" id="loginEmail" placeholder="Enter you email">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control bg-transparent text-white mb-5" id="loginPassword" placeholder="Enter your password">
+            </div>
+            
+            <p class="text-danger d-none" id="fillMsg">fill the inputs first</p>
+            <p class="text-danger d-none" id="wrongMsg">your email or password is incorrect</p>
+            <a class="btn btn-outline-info w-100 mb-3 text-decoration-none" id="loginBtn" onclick="login()">Login</a>
+            <p class="text-white">don't have an accoount? <a href="signUp.html" class="text-white text-decoration-none">Sign Up</a></p>
+        </div>
+    </div>
+</body>
+</html>

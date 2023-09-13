@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload(get_data());
+function get_data() {
+    fetch(`http://makeup-api.herokuapp.com/api/v1/products.json?product_type="nail_polish"`)
+        .then(res => res.json())
+        .then(data => {
+            // Filter products with a price value and working image link
+            const filteredData = data.slice(0, 100).map(item => {
+                if (item.price === null || item.price === undefined) {
+                    item.price = 65; // set price to 65 if it is null or undefined
+                }
+                return item;
+            });
+            console.log(filteredData)
+            catogries(filteredData);
+            console.log("h "+arrayCatogry)
+        })
+}
+var arrayCatogry;
+function catogries(data) {
+    var catogries = [];
+    data.forEach(item => {
+        catogries.push(item.product_type);
+    });
+    arrayCatogry = [...new Set(catogries)];
+    return arrayCatogry;
+}
+    </script>
+</body>
+</html>
